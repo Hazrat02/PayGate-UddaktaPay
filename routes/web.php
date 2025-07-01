@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\getway;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// payment gateway test
+Route::post('/pay', [getway::class, 'createPayment'])->name('pay');
+Route::get('/success', [getway::class, 'paymentSuccess']);
+Route::get('/cancel', [getway::class, 'paymentCancel']);
+Route::get('/webhook', [getway::class, 'handleWebhook']);
